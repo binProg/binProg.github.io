@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="BERT学习笔记(原理篇1)   机器学习最早使用1-of-N encoding，把每个词汇表示成一个N维的向量，N维向量中只有1个1，其余全是0。造成维度爆炸，且各个词汇之间的上下文关系和语义关系都没有考虑进去。 接着，有了Word Class的概念，比如 dog&#x2F;bird&#x2F;fish是一类，因为都是动物。但是之关注了类间单词的区别而忽略了类内单词的区别 进阶的，有了Word Embedding">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BERT学习笔记--李宏毅">
+<meta property="og:url" content="http://example.com/2021/12/15/BERT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%9D%8E%E5%AE%8F%E6%AF%85/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="BERT学习笔记(原理篇1)   机器学习最早使用1-of-N encoding，把每个词汇表示成一个N维的向量，N维向量中只有1个1，其余全是0。造成维度爆炸，且各个词汇之间的上下文关系和语义关系都没有考虑进去。 接着，有了Word Class的概念，比如 dog&#x2F;bird&#x2F;fish是一类，因为都是动物。但是之关注了类间单词的区别而忽略了类内单词的区别 进阶的，有了Word Embedding">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg-blog.csdnimg.cn%2F2021031620201211.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDE3NzU5NA%3D%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&refer=http%3A%2F%2Fimg-blog.csdnimg.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642056957&t=8dcbc4be84686bc9ccd1e1ba051e10a0">
+<meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg-blog.csdnimg.cn%2Fimg_convert%2Fb4e03affb8f391fca6cb35d5a9e164c6.png&refer=http%3A%2F%2Fimg-blog.csdnimg.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642056079&t=f237adc41fa64029446bde333612455c">
+<meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg-blog.csdnimg.cn%2F20210223193921145.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjgzODA2MQ%3D%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;refer=http%3A%2F%2Fimg-blog.csdnimg.cn&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1642055881&amp;t=6df93deba3f9b048d2cdd6789939d97e">
+<meta property="og:image" content="https://tse4-mm.cn.bing.net/th/id/OIP-C.oDJW0d8K-EIKnlBZ1S13TwHaFn?pid=ImgDet&rs=1">
+<meta property="og:image" content="https://tse1-mm.cn.bing.net/th/id/OIP-C.zzrwVkfLyNFk2tc1hroTLwHaFU?pid=ImgDet&rs=1">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210306173935877.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hlcm9zdW5seQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://tse1-mm.cn.bing.net/th/id/OIP-C.54m5zFtXFwz6b6PXf_s6CAHaFR?pid=ImgDet&rs=1">
+<meta property="og:image" content="https://tse4-mm.cn.bing.net/th/id/OIP-C.8uzrcyIwoOhxi0z68ozRxAHaFg?pid=ImgDet&rs=1">
+<meta property="og:image" content="https://tse3-mm.cn.bing.net/th/id/OIP-C.ej_jhIuiHIo2Vt8bGZ-FGQHaFK?pid=ImgDet&rs=1">
+<meta property="og:image" content="https://tse1-mm.cn.bing.net/th/id/OIP-C.y30CYJ41Pba7iwXAzXBV7AHaFh?pid=ImgDet&rs=1">
+<meta property="article:published_time" content="2021-12-15T12:46:32.000Z">
+<meta property="article:modified_time" content="2021-12-16T04:23:45.815Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="nlp Bert">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg-blog.csdnimg.cn%2F2021031620201211.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDE3NzU5NA%3D%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&refer=http%3A%2F%2Fimg-blog.csdnimg.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642056957&t=8dcbc4be84686bc9ccd1e1ba051e10a0">
+
+<link rel="canonical" href="http://example.com/2021/12/15/BERT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%9D%8E%E5%AE%8F%E6%AF%85/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>BERT学习笔记--李宏毅 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hexo</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/15/BERT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%9D%8E%E5%AE%8F%E6%AF%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          BERT学习笔记--李宏毅
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-12-15 20:46:32" itemprop="dateCreated datePublished" datetime="2021-12-15T20:46:32+08:00">2021-12-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-12-16 12:23:45" itemprop="dateModified" datetime="2021-12-16T12:23:45+08:00">2021-12-16</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="bert学习笔记原理篇1"><a class="markdownIt-Anchor" href="#bert学习笔记原理篇1"></a> BERT学习笔记(原理篇1)</h1>
+<blockquote>
+<ol>
+<li>机器学习最早使用<strong>1-of-N encoding</strong>，把每个词汇表示成一个N维的向量，N维向量中只有1个1，其余全是0。造成维度爆炸，且各个词汇之间的上下文关系和语义关系都没有考虑进去。</li>
+<li>接着，有了<strong>Word Class</strong>的概念，比如 dog/bird/fish是一类，因为都是动物。但是之关注了类间单词的区别而忽略了类内单词的区别</li>
+<li>进阶的，有了<strong>Word Embedding</strong>的概念，用dense vector（向量）来表示一个词，意思相近的词其向量之间的距离较近。常见的Word Embedding方法有word2vec, GloVe等</li>
+</ol>
+</blockquote>
+<img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg-blog.csdnimg.cn%2F2021031620201211.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDE3NzU5NA%3D%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&refer=http%3A%2F%2Fimg-blog.csdnimg.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642056957&t=8dcbc4be84686bc9ccd1e1ba051e10a0" width="500px" height="350px" />
+<h2 id="一-introduction"><a class="markdownIt-Anchor" href="#一-introduction"></a> 一、Introduction</h2>
+<p>ELMO: RNN-based language model， trained from lots of sentences</p>
+<img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg-blog.csdnimg.cn%2Fimg_convert%2Fb4e03affb8f391fca6cb35d5a9e164c6.png&refer=http%3A%2F%2Fimg-blog.csdnimg.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642056079&t=f237adc41fa64029446bde333612455c" width ="500px" height="500px" />
+<p>BERT: Encoder of Transformer</p>
+<h2 id="二-training-of-bert"><a class="markdownIt-Anchor" href="#二-training-of-bert"></a> 二、Training of BERT</h2>
+<ul>
+<li>Approach 1：MASKED LM
+<ul>
+<li>相当于完型填空，即随机覆盖住15%的词，去预测覆盖住的词</li>
+</ul>
+</li>
+<li>Approach 2： NEXT SENTENCE PREDICTION
+<ul>
+<li>做句子之间的判断，判断两个句子是否存在上下文关系</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg-blog.csdnimg.cn%2F20210223193921145.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjgzODA2MQ%3D%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;refer=http%3A%2F%2Fimg-blog.csdnimg.cn&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1642055881&amp;t=6df93deba3f9b048d2cdd6789939d97e" alt="img" /></p>
+<h2 id="三-how-to-use-bert-akabert的应用"><a class="markdownIt-Anchor" href="#三-how-to-use-bert-akabert的应用"></a> 三、How to use BERT aka:Bert的应用</h2>
+<h3 id="case-1-决定一整个句子属于那个类别句子的分类"><a class="markdownIt-Anchor" href="#case-1-决定一整个句子属于那个类别句子的分类"></a> CASE 1:  决定一整个句子属于那个类别（句子的分类）</h3>
+<img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.oDJW0d8K-EIKnlBZ1S13TwHaFn?pid=ImgDet&rs=1" aligin="center">
+<blockquote>
+<p><strong>[CLS]</strong>：代表分类的特殊符号，放在开头是因为Bert是基于Transformer的，而Transformer基于self-attention，即<strong>每个位置都会得到整个位置的句子信息</strong>，所以不需要放在最后</p>
+</blockquote>
+<h3 id="case-2-决定一个句子中每个单词所属的类别"><a class="markdownIt-Anchor" href="#case-2-决定一个句子中每个单词所属的类别"></a> Case 2: 决定一个句子中每个单词所属的类别</h3>
+<img src="https://tse1-mm.cn.bing.net/th/id/OIP-C.zzrwVkfLyNFk2tc1hroTLwHaFU?pid=ImgDet&rs=1">
+<blockquote>
+<p>如：决定一个句子中w1是位置词还是时间词还是其它词</p>
+</blockquote>
+<h3 id="case-3-根据sentence1前提决定sentence2假设是对还是错"><a class="markdownIt-Anchor" href="#case-3-根据sentence1前提决定sentence2假设是对还是错"></a> CASE 3: 根据Sentence1（前提）决定Sentence2（假设）是对还是错</h3>
+<img src="https://img-blog.csdnimg.cn/20210306173935877.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hlcm9zdW5seQ==,size_16,color_FFFFFF,t_70" width="500px">
+<h3 id="case-4-qa"><a class="markdownIt-Anchor" href="#case-4-qa"></a> CASE 4: QA</h3>
+<img src="https://tse1-mm.cn.bing.net/th/id/OIP-C.54m5zFtXFwz6b6PXf_s6CAHaFR?pid=ImgDet&rs=1" aligin="center">
+<p>Input：文章+问题   ===&gt;  Output：答案在文章中起始位置 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>=</mo><mo stretchy="false">{</mo><msub><mi>d</mi><mi>s</mi></msub><mo separator="true">,</mo><mo>⋯</mo><mtext> </mtext><mo separator="true">,</mo><msub><mi>d</mi><mi>e</mi></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">A = \{d_s, \cdots, d_e\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">e</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span></span></span></span></p>
+<p>​          <img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.8uzrcyIwoOhxi0z68ozRxAHaFg?pid=ImgDet&rs=1" width="500"></p>
+<img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.ej_jhIuiHIo2Vt8bGZ-FGQHaFK?pid=ImgDet&rs=1" width="500">
+<h2 id="四-扩展-ernie"><a class="markdownIt-Anchor" href="#四-扩展-ernie"></a> 四、扩展-ERNIE</h2>
+<img src="https://tse1-mm.cn.bing.net/th/id/OIP-C.y30CYJ41Pba7iwXAzXBV7AHaFh?pid=ImgDet&rs=1">
+<p>针对中文的MASK提出的想法：</p>
+<ul>
+<li>BERT中做MASK时，MASK的是中文中的一个字，通过上下文很容易predict出被MASK的词是什么。而且不符合中文的实际，中文语义是以***词*** 为单位，而英文语义是一个字或者word为单位。</li>
+<li>ERNIE则是专为中文设计的MASK方法，每次以中文的“词”为单位进行MASK和分类预测，而不再以单个的字为单位进行分类预测。</li>
+</ul>
+<p>目前的变种实现有：</p>
+<ul>
+<li>华为：ZEN</li>
+<li>清华：ERNIE-T</li>
+</ul>
+<h2 id="参考链接"><a class="markdownIt-Anchor" href="#参考链接"></a> 参考链接</h2>
+<ol>
+<li>《李宏毅Bert学习笔记 》<a target="_blank" rel="noopener" href="https://blog.csdn.net/herosunly/article/details/94720139">https://blog.csdn.net/herosunly/article/details/94720139</a></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/nlp-Bert/" rel="tag"># nlp Bert</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/15/Docker%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%AF%87/" rel="prev" title="Docker笔记之基础篇">
+      <i class="fa fa-chevron-left"></i> Docker笔记之基础篇
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/12/15/%E5%B8%B8%E7%94%A8%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E6%A6%82%E8%A6%81/" rel="next" title="常用激活函数概要">
+      常用激活函数概要 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#bert%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%8E%9F%E7%90%86%E7%AF%871"><span class="nav-number">1.</span> <span class="nav-text"> BERT学习笔记(原理篇1)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-introduction"><span class="nav-number">1.1.</span> <span class="nav-text"> 一、Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-training-of-bert"><span class="nav-number">1.2.</span> <span class="nav-text"> 二、Training of BERT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-how-to-use-bert-akabert%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">1.3.</span> <span class="nav-text"> 三、How to use BERT aka:Bert的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#case-1-%E5%86%B3%E5%AE%9A%E4%B8%80%E6%95%B4%E4%B8%AA%E5%8F%A5%E5%AD%90%E5%B1%9E%E4%BA%8E%E9%82%A3%E4%B8%AA%E7%B1%BB%E5%88%AB%E5%8F%A5%E5%AD%90%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.3.1.</span> <span class="nav-text"> CASE 1:  决定一整个句子属于那个类别（句子的分类）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#case-2-%E5%86%B3%E5%AE%9A%E4%B8%80%E4%B8%AA%E5%8F%A5%E5%AD%90%E4%B8%AD%E6%AF%8F%E4%B8%AA%E5%8D%95%E8%AF%8D%E6%89%80%E5%B1%9E%E7%9A%84%E7%B1%BB%E5%88%AB"><span class="nav-number">1.3.2.</span> <span class="nav-text"> Case 2: 决定一个句子中每个单词所属的类别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#case-3-%E6%A0%B9%E6%8D%AEsentence1%E5%89%8D%E6%8F%90%E5%86%B3%E5%AE%9Asentence2%E5%81%87%E8%AE%BE%E6%98%AF%E5%AF%B9%E8%BF%98%E6%98%AF%E9%94%99"><span class="nav-number">1.3.3.</span> <span class="nav-text"> CASE 3: 根据Sentence1（前提）决定Sentence2（假设）是对还是错</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#case-4-qa"><span class="nav-number">1.3.4.</span> <span class="nav-text"> CASE 4: QA</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E6%89%A9%E5%B1%95-ernie"><span class="nav-number">1.4.</span> <span class="nav-text"> 四、扩展-ERNIE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">1.5.</span> <span class="nav-text"> 参考链接</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
