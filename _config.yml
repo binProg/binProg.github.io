@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: Binj的博客
 subtitle: ''
 description: ''
 keywords:
-author: John Doe
-language: en
+author: Binj
+language: zh-CN
 timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: https://binprog.github.io/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -103,5 +103,5 @@ theme: hexo-theme-next
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/binProg/binProg.github.io.git
+  repo: git@github.com:binProg/binProg.github.io.git
   branch: master
