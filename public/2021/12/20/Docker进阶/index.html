@@ -20,25 +20,23 @@
     var CONFIG = {"hostname":"binprog.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="常用激活函数概要激活函数作用：  考虑到真实世界，大多数系统是非线性的，如果要模拟复杂系统则必须借助非线性的激活函数！  通用近似理论(Universal Approximation Theorem):   神经网络中至少需要一层隐藏层和足够的神经元，利用非线性的激活函数，便可以模拟任何复杂的非线性函数。  1. Sigmoid函数公式： sigmoid(x) &#x3D; \frac{1}{1+e^{-x">
+  <meta name="description" content="Docker进阶  一、Docker容器卷 容器运行时，数据都在容器中，如果容器被删除，那么数据就会丢失。由此，产生出需求：数据持久化。 为了满足这个需求，容器之间需要有一个数据共享技术。即，Docker容器中产生的数据，可以同步到本地。 卷技术：将容器内的目录，挂载到Linux上。   容器卷技术：容器的持久化和同步操作！容器间也是可以数据共享的！   1. 使用数据卷  方式一：直接使用命令">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常用激活函数概要">
-<meta property="og:url" content="https://binprog.github.io/2021/12/15/%E5%B8%B8%E7%94%A8%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E6%A6%82%E8%A6%81/index.html">
+<meta property="og:title" content="Docker进阶">
+<meta property="og:url" content="https://binprog.github.io/2021/12/20/Docker%E8%BF%9B%E9%98%B6/index.html">
 <meta property="og:site_name" content="Binj的博客">
-<meta property="og:description" content="常用激活函数概要激活函数作用：  考虑到真实世界，大多数系统是非线性的，如果要模拟复杂系统则必须借助非线性的激活函数！  通用近似理论(Universal Approximation Theorem):   神经网络中至少需要一层隐藏层和足够的神经元，利用非线性的激活函数，便可以模拟任何复杂的非线性函数。  1. Sigmoid函数公式： sigmoid(x) &#x3D; \frac{1}{1+e^{-x">
+<meta property="og:description" content="Docker进阶  一、Docker容器卷 容器运行时，数据都在容器中，如果容器被删除，那么数据就会丢失。由此，产生出需求：数据持久化。 为了满足这个需求，容器之间需要有一个数据共享技术。即，Docker容器中产生的数据，可以同步到本地。 卷技术：将容器内的目录，挂载到Linux上。   容器卷技术：容器的持久化和同步操作！容器间也是可以数据共享的！   1. 使用数据卷  方式一：直接使用命令">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fs5.51cto.com%2Fwyfs02%2FM01%2F85%2F51%2FwKiom1egBxOBiT26AABfVHYjxlU640.jpg&refer=http%3A%2F%2Fs5.51cto.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642147041&t=2380c142f902867afbde4a2b9d36a1df">
-<meta property="og:image" content="https://s4.ax1x.com/2021/12/15/TSG6eg.png">
-<meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.soolco.com%2Fgroup1%2FM00%2F0E%2FEF%2FrBAADF-8cmqAP7ZBAACAfZwqipg022.png&refer=http%3A%2F%2Fwww.soolco.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642147920&t=e8fbccac442127ec2dfd2125e1950d3e">
-<meta property="og:image" content="https://img0.baidu.com/it/u=3033173174,2106807370&fm=26&fmt=auto">
-<meta property="article:published_time" content="2021-12-15T12:48:27.000Z">
-<meta property="article:modified_time" content="2021-12-16T12:45:52.537Z">
+<meta property="og:image" content="https://gitee.com/binProg/my-pic-cdn/raw/master/hexo_imgs/%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF%E4%BA%A4%E4%BA%922.png">
+<meta property="og:image" content="https://gitee.com/binProg/my-pic-cdn/raw/master/hexo_imgs/UO_ZG0%60K9$WOG0V_HP%7BPF4U.png">
+<meta property="article:published_time" content="2021-12-20T01:41:13.000Z">
+<meta property="article:modified_time" content="2021-12-20T01:41:57.044Z">
 <meta property="article:author" content="Binj">
-<meta property="article:tag" content="nlp 激活函数">
+<meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fs5.51cto.com%2Fwyfs02%2FM01%2F85%2F51%2FwKiom1egBxOBiT26AABfVHYjxlU640.jpg&refer=http%3A%2F%2Fs5.51cto.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642147041&t=2380c142f902867afbde4a2b9d36a1df">
+<meta name="twitter:image" content="https://gitee.com/binProg/my-pic-cdn/raw/master/hexo_imgs/%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF%E4%BA%A4%E4%BA%922.png">
 
-<link rel="canonical" href="https://binprog.github.io/2021/12/15/%E5%B8%B8%E7%94%A8%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E6%A6%82%E8%A6%81/">
+<link rel="canonical" href="https://binprog.github.io/2021/12/20/Docker%E8%BF%9B%E9%98%B6/">
 
 
 <script id="page-configurations">
@@ -51,7 +49,7 @@
   };
 </script>
 
-  <title>常用激活函数概要 | Binj的博客</title>
+  <title>Docker进阶 | Binj的博客</title>
   
 
 
@@ -156,7 +154,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://binprog.github.io/2021/12/15/%E5%B8%B8%E7%94%A8%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E6%A6%82%E8%A6%81/">
+    <link itemprop="mainEntityOfPage" href="https://binprog.github.io/2021/12/20/Docker%E8%BF%9B%E9%98%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -169,7 +167,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          常用激活函数概要
+          Docker进阶
         </h1>
 
         <div class="post-meta">
@@ -178,16 +176,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-12-15 20:48:27" itemprop="dateCreated datePublished" datetime="2021-12-15T20:48:27+08:00">2021-12-15</time>
+              <time title="创建时间：2021-12-20 09:41:13 / 修改时间：09:41:57" itemprop="dateCreated datePublished" datetime="2021-12-20T09:41:13+08:00">2021-12-20</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-16 20:45:52" itemprop="dateModified" datetime="2021-12-16T20:45:52+08:00">2021-12-16</time>
-              </span>
 
           
 
@@ -200,52 +192,30 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="常用激活函数概要"><a href="#常用激活函数概要" class="headerlink" title="常用激活函数概要"></a>常用激活函数概要</h1><p><strong>激活函数作用：</strong></p>
+        <h1 id="docker进阶"><a class="markdownIt-Anchor" href="#docker进阶"></a> Docker进阶</h1>
+<h2 id="一-docker容器卷"><a class="markdownIt-Anchor" href="#一-docker容器卷"></a> 一、Docker容器卷</h2>
+<p>容器运行时，数据都在容器中，如果容器被删除，那么数据就会丢失。由此，产生出需求：<strong>数据持久化</strong>。</p>
+<p>为了满足这个需求，容器之间需要有一个<strong>数据共享</strong>技术。即，Docker容器中产生的数据，可以同步到本地。</p>
+<p>卷技术：将容器内的目录，挂载到Linux上。</p>
+<img src="https://gitee.com/binProg/my-pic-cdn/raw/master/hexo_imgs/%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF%E4%BA%A4%E4%BA%922.png" width="500px">
 <blockquote>
-<p>考虑到真实世界，大多数系统是<strong>非线性</strong>的，如果要模拟复杂系统则必须借助非线性的激活函数！</p>
+<p>容器卷技术：容器的持久化和同步操作！容器间也是可以数据共享的！</p>
 </blockquote>
-<p><strong>通用近似理论(Universal Approximation Theorem):</strong> </p>
+<h3 id="1-使用数据卷"><a class="markdownIt-Anchor" href="#1-使用数据卷"></a> 1. 使用数据卷</h3>
 <blockquote>
-<p>神经网络中至少需要一层隐藏层和足够的神经元，利用非线性的激活函数，便可以模拟任何复杂的非线性函数。</p>
+<p>方式一：直接使用命令来挂载 -v</p>
 </blockquote>
-<h2 id="1-Sigmoid函数"><a href="#1-Sigmoid函数" class="headerlink" title="1. Sigmoid函数"></a>1. Sigmoid函数</h2><p>公式：</p>
-<script type="math/tex; mode=display">sigmoid(x) = \frac{1}{1+e^{-x}}</script><p><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fs5.51cto.com%2Fwyfs02%2FM01%2F85%2F51%2FwKiom1egBxOBiT26AABfVHYjxlU640.jpg&refer=http%3A%2F%2Fs5.51cto.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642147041&t=2380c142f902867afbde4a2b9d36a1df" height="300px"></p>
-<p>特点：</p>
-<ul>
-<li>Sigmoid的取值范围在$(0,1)$之间</li>
-<li>Sigmoid函数的导值在$(0,0.25)$的连续区间</li>
-</ul>
-<p>缺点：</p>
-<ol>
-<li><p>在神经网络模型，Sigmoid函数存在<strong>“梯度消失”问题</strong>：</p>
-<p>在逆向参数调整（Back Propagation）过程中，使用链式法则（Chain Rule）可以推导出如下图所示的公式：</p>
-<p><img src="https://s4.ax1x.com/2021/12/15/TSG6eg.png" height="150px"></p>
-<p>基于上图公式，对深度神经网络的权重调整幅度进行计算，上图中间部分是多个Sigmoid导数的乘积，多个0.25相乘后$(0.25<em>0.25</em>0.25<em>\cdots</em>0.25)​$，权重逐渐趋于0，即导致”梯度消失“。</p>
-</li>
-<li><p>Sigmoid函数在进行指数计算时会消耗较多的计算资源 </p>
-</li>
-</ol>
-<h2 id="2-tanh函数"><a href="#2-tanh函数" class="headerlink" title="2. tanh函数"></a>2. tanh函数</h2><p>公式：</p>
-<script type="math/tex; mode=display">
-tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}</script><p><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.soolco.com%2Fgroup1%2FM00%2F0E%2FEF%2FrBAADF-8cmqAP7ZBAACAfZwqipg022.png&refer=http%3A%2F%2Fwww.soolco.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642147920&t=e8fbccac442127ec2dfd2125e1950d3e" height="400px"></p>
-<p>特点：</p>
-<ul>
-<li>tanh函数的值位于$(-1, 1)$区间</li>
-<li>tanh函数的导数值位于$(0, 1)$区间，<ul>
-<li>因为tanh的导数值范围大于sigmoid，所以tanh显著缓解了梯度消失问题，但不能消除！</li>
-</ul>
-</li>
-</ul>
-<h2 id="3-ReLU函数"><a href="#3-ReLU函数" class="headerlink" title="3. ReLU函数"></a>3. ReLU函数</h2><p>公式：</p>
-<script type="math/tex; mode=display">
-relu(x) = max(0, x)</script><p><img src="https://img0.baidu.com/it/u=3033173174,2106807370&fm=26&fmt=auto" height="300px"></p>
-<p><strong>隐藏层的默认推荐函数：ReLU</strong></p>
-<p>特点：</p>
-<ul>
-<li>ReLU在$x&gt;0$时显示的线性特征，能够很好地解决梯度消失问题</li>
-<li>根据通用相似定理，ReLU函数整体的非线性又能够在神经网络中拟合任何复杂的连续函数</li>
-<li>当$x &lt; 0$时，其函数值和导数值均为0，在逆向梯度调整时，不产生参数值的改变</li>
-</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run -it -v 主机目录:容器内的目录</span><br><span class="line"># 启动起来后可以使用 docker inspect 容器id 来查看挂载详情</span><br></pre></td></tr></table></figure>
+<img src="https://gitee.com/binProg/my-pic-cdn/raw/master/hexo_imgs/UO_ZG0%60K9$WOG0V_HP%7BPF4U.png">
+<h3 id="2-实战mysql"><a class="markdownIt-Anchor" href="#2-实战mysql"></a> 2. 实战：MYSQL</h3>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p <span class="number">3310</span>:<span class="number">3306</span> -v C:/Users/BINJ/Desktop/电网/ceshi/mysql/conf:/etc/mysql/conf.d -v C:/Users/BINJ/Desktop/电网/ceshi/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=<span class="number">123456</span> --name mysql01 mysql:<span class="number">5</span>.<span class="number">7</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-匿名和具名挂载"><a class="markdownIt-Anchor" href="#3-匿名和具名挂载"></a> 3. 匿名和具名挂载</h3>
+<p>所有docker容器内的卷，没有指定目录的情况下都在 <code>/var/lib/docker/volumes/xxxxx(具名)/_data</code></p>
+<p>具体的路径可以使用命令<code>docker volumn inspect xxxxx</code>查看</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 区分具名和匿名</span><br><span class="line">-v 容器内路径    #匿名挂载</span><br><span class="line">-v 卷名：容器内路径  #具名挂载</span><br><span class="line">-v 宿主机路径：容器内路径   #具体路径挂载</span><br></pre></td></tr></table></figure>
+<h2 id="二-dockerfile"><a class="markdownIt-Anchor" href="#二-dockerfile"></a> 二、Dockerfile</h2>
+<p>Dockerfile就是用来构建docker镜像的构建文件！命令脚本！</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 创建一个dockerfile文件，名字建议 Dockerfile</span><br><span class="line"># 文件中的内容： 指定（大写） 参数</span><br><span class="line">FROM centos</span><br><span class="line"></span><br><span class="line">VOLUME [&quot;volume01&quot;,&quot;volume02&quot;]</span><br><span class="line"></span><br><span class="line">CMD echo &quot;------end------&quot;</span><br><span class="line"></span><br><span class="line">CMD /bin/bash</span><br><span class="line"></span><br><span class="line"># 这里的每个命令就是镜像的一层</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -255,7 +225,7 @@ relu(x) = max(0, x)</script><p><img src="https://img0.baidu.com/it/u=3033173174,
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/nlp-%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" rel="tag"># nlp 激活函数</a>
+              <a href="/tags/Docker/" rel="tag"># Docker</a>
           </div>
 
         
@@ -264,13 +234,10 @@ relu(x) = max(0, x)</script><p><img src="https://img0.baidu.com/it/u=3033173174,
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/12/15/BERT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%9D%8E%E5%AE%8F%E6%AF%85/" rel="prev" title="BERT学习笔记--李宏毅">
-      <i class="fa fa-chevron-left"></i> BERT学习笔记--李宏毅
+    <a href="/2021/12/16/Numpy%E5%9F%BA%E7%A1%80/" rel="prev" title="Numpy基础">
+      <i class="fa fa-chevron-left"></i> Numpy基础
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/12/16/Numpy%E5%9F%BA%E7%A1%80/" rel="next" title="Numpy基础">
-      Numpy基础 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -329,7 +296,7 @@ relu(x) = max(0, x)</script><p><img src="https://img0.baidu.com/it/u=3033173174,
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E6%A6%82%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">常用激活函数概要</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Sigmoid%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">1. Sigmoid函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-tanh%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">2. tanh函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-ReLU%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text">3. ReLU函数</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#docker%E8%BF%9B%E9%98%B6"><span class="nav-number">1.</span> <span class="nav-text"> Docker进阶</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-docker%E5%AE%B9%E5%99%A8%E5%8D%B7"><span class="nav-number">1.1.</span> <span class="nav-text"> 一、Docker容器卷</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%8D%B7"><span class="nav-number">1.1.1.</span> <span class="nav-text"> 1. 使用数据卷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AE%9E%E6%88%98mysql"><span class="nav-number">1.1.2.</span> <span class="nav-text"> 2. 实战：MYSQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%8C%BF%E5%90%8D%E5%92%8C%E5%85%B7%E5%90%8D%E6%8C%82%E8%BD%BD"><span class="nav-number">1.1.3.</span> <span class="nav-text"> 3. 匿名和具名挂载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-dockerfile"><span class="nav-number">1.2.</span> <span class="nav-text"> 二、Dockerfile</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

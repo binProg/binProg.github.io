@@ -20,28 +20,39 @@
     var CONFIG = {"hostname":"binprog.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Binj的博客">
-<meta property="og:url" content="https://binprog.github.io/index.html">
+  <meta name="description" content="Numpy学习笔记1. 生成Numpy数组1.1 从已有数据中创建数组 将列表转换成ndarray  12345import numpy as nplst1 &#x3D; [3.14, 2.17, 1, 2, 3]nd1 &#x3D; np.array(lst1)print(nd1)print(type(nd1)) 12[3.14 2.17 1.   2.   3.  ]&lt;class &amp;#x27;numpy.n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Numpy基础">
+<meta property="og:url" content="https://binprog.github.io/2021/12/16/Numpy%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="Binj的博客">
+<meta property="og:description" content="Numpy学习笔记1. 生成Numpy数组1.1 从已有数据中创建数组 将列表转换成ndarray  12345import numpy as nplst1 &#x3D; [3.14, 2.17, 1, 2, 3]nd1 &#x3D; np.array(lst1)print(nd1)print(type(nd1)) 12[3.14 2.17 1.   2.   3.  ]&lt;class &amp;#x27;numpy.n">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="attachment:IMG_0360.PNG">
+<meta property="og:image" content="attachment:IMG_0361%2820211216-140409%29.PNG">
+<meta property="og:image" content="attachment:IMG_0362%2820211216-142751%29.PNG">
+<meta property="og:image" content="attachment:IMG_0363.PNG">
+<meta property="og:image" content="attachment:IMG_0364.PNG">
+<meta property="article:published_time" content="2021-12-16T08:34:42.000Z">
+<meta property="article:modified_time" content="2021-12-16T12:39:24.104Z">
 <meta property="article:author" content="Binj">
+<meta property="article:tag" content="Numpy nlp">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="attachment:IMG_0360.PNG">
 
-<link rel="canonical" href="https://binprog.github.io/">
+<link rel="canonical" href="https://binprog.github.io/2021/12/16/Numpy%E5%9F%BA%E7%A1%80/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>Binj的博客</title>
+  <title>Numpy基础 | Binj的博客</title>
   
 
 
@@ -139,91 +150,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://binprog.github.io/2021/12/20/Docker%E8%BF%9B%E9%98%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Binj">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Binj的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/20/Docker%E8%BF%9B%E9%98%B6/" class="post-title-link" itemprop="url">Docker进阶</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-12-20 09:41:13 / 修改时间：09:41:57" itemprop="dateCreated datePublished" datetime="2021-12-20T09:41:13+08:00">2021-12-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="docker进阶"><a class="markdownIt-Anchor" href="#docker进阶"></a> Docker进阶</h1>
-<h2 id="一-docker容器卷"><a class="markdownIt-Anchor" href="#一-docker容器卷"></a> 一、Docker容器卷</h2>
-<p>容器运行时，数据都在容器中，如果容器被删除，那么数据就会丢失。由此，产生出需求：<strong>数据持久化</strong>。</p>
-<p>为了满足这个需求，容器之间需要有一个<strong>数据共享</strong>技术。即，Docker容器中产生的数据，可以同步到本地。</p>
-<p>卷技术：将容器内的目录，挂载到Linux上。</p>
-<img src="https://gitee.com/binProg/my-pic-cdn/raw/master/hexo_imgs/%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF%E4%BA%A4%E4%BA%922.png" width="500px">
-<blockquote>
-<p>容器卷技术：容器的持久化和同步操作！容器间也是可以数据共享的！</p>
-</blockquote>
-<h3 id="1-使用数据卷"><a class="markdownIt-Anchor" href="#1-使用数据卷"></a> 1. 使用数据卷</h3>
-<blockquote>
-<p>方式一：直接使用命令来挂载 -v</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run -it -v 主机目录:容器内的目录</span><br><span class="line"># 启动起来后可以使用 docker inspect 容器id 来查看挂载详情</span><br></pre></td></tr></table></figure>
-<img src="https://gitee.com/binProg/my-pic-cdn/raw/master/hexo_imgs/UO_ZG0%60K9$WOG0V_HP%7BPF4U.png">
-<h3 id="2-实战mysql"><a class="markdownIt-Anchor" href="#2-实战mysql"></a> 2. 实战：MYSQL</h3>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p <span class="number">3310</span>:<span class="number">3306</span> -v C:/Users/BINJ/Desktop/电网/ceshi/mysql/conf:/etc/mysql/conf.d -v C:/Users/BINJ/Desktop/电网/ceshi/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=<span class="number">123456</span> --name mysql01 mysql:<span class="number">5</span>.<span class="number">7</span></span><br></pre></td></tr></table></figure>
-<h3 id="3-匿名和具名挂载"><a class="markdownIt-Anchor" href="#3-匿名和具名挂载"></a> 3. 匿名和具名挂载</h3>
-<p>所有docker容器内的卷，没有指定目录的情况下都在 <code>/var/lib/docker/volumes/xxxxx(具名)/_data</code></p>
-<p>具体的路径可以使用命令<code>docker volumn inspect xxxxx</code>查看</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 区分具名和匿名</span><br><span class="line">-v 容器内路径    #匿名挂载</span><br><span class="line">-v 卷名：容器内路径  #具名挂载</span><br><span class="line">-v 宿主机路径：容器内路径   #具体路径挂载</span><br></pre></td></tr></table></figure>
-<h2 id="二-dockerfile"><a class="markdownIt-Anchor" href="#二-dockerfile"></a> 二、Dockerfile</h2>
-<p>Dockerfile就是用来构建docker镜像的构建文件！命令脚本！</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 创建一个dockerfile文件，名字建议 Dockerfile</span><br><span class="line"># 文件中的内容： 指定（大写） 参数</span><br><span class="line">FROM centos</span><br><span class="line"></span><br><span class="line">VOLUME [&quot;volume01&quot;,&quot;volume02&quot;]</span><br><span class="line"></span><br><span class="line">CMD echo &quot;------end------&quot;</span><br><span class="line"></span><br><span class="line">CMD /bin/bash</span><br><span class="line"></span><br><span class="line"># 这里的每个命令就是镜像的一层</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -239,10 +169,9 @@
       <meta itemprop="name" content="Binj的博客">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/16/Numpy%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">Numpy基础</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          Numpy基础
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -266,7 +195,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Numpy学习笔记"><a href="#Numpy学习笔记" class="headerlink" title="Numpy学习笔记"></a>Numpy学习笔记</h1><h2 id="1-生成Numpy数组"><a href="#1-生成Numpy数组" class="headerlink" title="1. 生成Numpy数组"></a>1. 生成Numpy数组</h2><h3 id="1-1-从已有数据中创建数组"><a href="#1-1-从已有数据中创建数组" class="headerlink" title="1.1 从已有数据中创建数组"></a>1.1 从已有数据中创建数组</h3><ul>
+        <h1 id="Numpy学习笔记"><a href="#Numpy学习笔记" class="headerlink" title="Numpy学习笔记"></a>Numpy学习笔记</h1><h2 id="1-生成Numpy数组"><a href="#1-生成Numpy数组" class="headerlink" title="1. 生成Numpy数组"></a>1. 生成Numpy数组</h2><h3 id="1-1-从已有数据中创建数组"><a href="#1-1-从已有数据中创建数组" class="headerlink" title="1.1 从已有数据中创建数组"></a>1.1 从已有数据中创建数组</h3><ul>
 <li>将列表转换成ndarray</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">lst1 = [<span class="number">3.14</span>, <span class="number">2.17</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">nd1 = np.array(lst1)</span><br><span class="line"><span class="built_in">print</span>(nd1)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(nd1))</span><br></pre></td></tr></table></figure>
@@ -402,451 +331,36 @@
 <li>当输入数组的某个轴的长度为1时，沿此轴运算时都用此轴上的第一组值</li>
 </ul>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/Numpy-nlp/" rel="tag"># Numpy nlp</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://binprog.github.io/2021/12/15/%E5%B8%B8%E7%94%A8%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E6%A6%82%E8%A6%81/">
+        
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Binj">
-      <meta itemprop="description" content="">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Binj的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/15/%E5%B8%B8%E7%94%A8%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E6%A6%82%E8%A6%81/" class="post-title-link" itemprop="url">常用激活函数概要</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-15 20:48:27" itemprop="dateCreated datePublished" datetime="2021-12-15T20:48:27+08:00">2021-12-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-16 20:45:52" itemprop="dateModified" datetime="2021-12-16T20:45:52+08:00">2021-12-16</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="常用激活函数概要"><a href="#常用激活函数概要" class="headerlink" title="常用激活函数概要"></a>常用激活函数概要</h1><p><strong>激活函数作用：</strong></p>
-<blockquote>
-<p>考虑到真实世界，大多数系统是<strong>非线性</strong>的，如果要模拟复杂系统则必须借助非线性的激活函数！</p>
-</blockquote>
-<p><strong>通用近似理论(Universal Approximation Theorem):</strong> </p>
-<blockquote>
-<p>神经网络中至少需要一层隐藏层和足够的神经元，利用非线性的激活函数，便可以模拟任何复杂的非线性函数。</p>
-</blockquote>
-<h2 id="1-Sigmoid函数"><a href="#1-Sigmoid函数" class="headerlink" title="1. Sigmoid函数"></a>1. Sigmoid函数</h2><p>公式：</p>
-<script type="math/tex; mode=display">sigmoid(x) = \frac{1}{1+e^{-x}}</script><p><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fs5.51cto.com%2Fwyfs02%2FM01%2F85%2F51%2FwKiom1egBxOBiT26AABfVHYjxlU640.jpg&refer=http%3A%2F%2Fs5.51cto.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642147041&t=2380c142f902867afbde4a2b9d36a1df" height="300px"></p>
-<p>特点：</p>
-<ul>
-<li>Sigmoid的取值范围在$(0,1)$之间</li>
-<li>Sigmoid函数的导值在$(0,0.25)$的连续区间</li>
-</ul>
-<p>缺点：</p>
-<ol>
-<li><p>在神经网络模型，Sigmoid函数存在<strong>“梯度消失”问题</strong>：</p>
-<p>在逆向参数调整（Back Propagation）过程中，使用链式法则（Chain Rule）可以推导出如下图所示的公式：</p>
-<p><img src="https://s4.ax1x.com/2021/12/15/TSG6eg.png" height="150px"></p>
-<p>基于上图公式，对深度神经网络的权重调整幅度进行计算，上图中间部分是多个Sigmoid导数的乘积，多个0.25相乘后$(0.25<em>0.25</em>0.25<em>\cdots</em>0.25)​$，权重逐渐趋于0，即导致”梯度消失“。</p>
-</li>
-<li><p>Sigmoid函数在进行指数计算时会消耗较多的计算资源 </p>
-</li>
-</ol>
-<h2 id="2-tanh函数"><a href="#2-tanh函数" class="headerlink" title="2. tanh函数"></a>2. tanh函数</h2><p>公式：</p>
-<script type="math/tex; mode=display">
-tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}</script><p><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.soolco.com%2Fgroup1%2FM00%2F0E%2FEF%2FrBAADF-8cmqAP7ZBAACAfZwqipg022.png&refer=http%3A%2F%2Fwww.soolco.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642147920&t=e8fbccac442127ec2dfd2125e1950d3e" height="400px"></p>
-<p>特点：</p>
-<ul>
-<li>tanh函数的值位于$(-1, 1)$区间</li>
-<li>tanh函数的导数值位于$(0, 1)$区间，<ul>
-<li>因为tanh的导数值范围大于sigmoid，所以tanh显著缓解了梯度消失问题，但不能消除！</li>
-</ul>
-</li>
-</ul>
-<h2 id="3-ReLU函数"><a href="#3-ReLU函数" class="headerlink" title="3. ReLU函数"></a>3. ReLU函数</h2><p>公式：</p>
-<script type="math/tex; mode=display">
-relu(x) = max(0, x)</script><p><img src="https://img0.baidu.com/it/u=3033173174,2106807370&fm=26&fmt=auto" height="300px"></p>
-<p><strong>隐藏层的默认推荐函数：ReLU</strong></p>
-<p>特点：</p>
-<ul>
-<li>ReLU在$x&gt;0$时显示的线性特征，能够很好地解决梯度消失问题</li>
-<li>根据通用相似定理，ReLU函数整体的非线性又能够在神经网络中拟合任何复杂的连续函数</li>
-<li>当$x &lt; 0$时，其函数值和导数值均为0，在逆向梯度调整时，不产生参数值的改变</li>
-</ul>
-
-      
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/15/%E5%B8%B8%E7%94%A8%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E6%A6%82%E8%A6%81/" rel="prev" title="常用激活函数概要">
+      <i class="fa fa-chevron-left"></i> 常用激活函数概要
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/12/20/Docker%E8%BF%9B%E9%98%B6/" rel="next" title="Docker进阶">
+      Docker进阶 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://binprog.github.io/2021/12/15/BERT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%9D%8E%E5%AE%8F%E6%AF%85/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Binj">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Binj的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/15/BERT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%9D%8E%E5%AE%8F%E6%AF%85/" class="post-title-link" itemprop="url">BERT学习笔记--李宏毅</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-15 20:46:32" itemprop="dateCreated datePublished" datetime="2021-12-15T20:46:32+08:00">2021-12-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-16 20:38:50" itemprop="dateModified" datetime="2021-12-16T20:38:50+08:00">2021-12-16</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="BERT学习笔记-原理篇1"><a href="#BERT学习笔记-原理篇1" class="headerlink" title="BERT学习笔记(原理篇1)"></a>BERT学习笔记(原理篇1)</h1><blockquote>
-<ol>
-<li>机器学习最早使用<strong>1-of-N encoding</strong>，把每个词汇表示成一个N维的向量，N维向量中只有1个1，其余全是0。造成维度爆炸，且各个词汇之间的上下文关系和语义关系都没有考虑进去。</li>
-<li>接着，有了<strong>Word Class</strong>的概念，比如 dog/bird/fish是一类，因为都是动物。但是之关注了类间单词的区别而忽略了类内单词的区别</li>
-<li>进阶的，有了<strong>Word Embedding</strong>的概念，用dense vector（向量）来表示一个词，意思相近的词其向量之间的距离较近。常见的Word Embedding方法有word2vec, GloVe等</li>
-</ol>
-</blockquote>
-<p><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg-blog.csdnimg.cn%2F2021031620201211.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDE3NzU5NA%3D%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&refer=http%3A%2F%2Fimg-blog.csdnimg.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642056957&t=8dcbc4be84686bc9ccd1e1ba051e10a0" width="500px" height="350px" /></p>
-<h2 id="一、Introduction"><a href="#一、Introduction" class="headerlink" title="一、Introduction"></a>一、Introduction</h2><p>ELMO: RNN-based language model， trained from lots of sentences</p>
-<p><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg-blog.csdnimg.cn%2Fimg_convert%2Fb4e03affb8f391fca6cb35d5a9e164c6.png&refer=http%3A%2F%2Fimg-blog.csdnimg.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642056079&t=f237adc41fa64029446bde333612455c" width ="500px" height="500px" /></p>
-<p>BERT: Encoder of Transformer</p>
-<h2 id="二、Training-of-BERT"><a href="#二、Training-of-BERT" class="headerlink" title="二、Training of BERT"></a>二、Training of BERT</h2><ul>
-<li>Approach 1：MASKED LM<ul>
-<li>相当于完型填空，即随机覆盖住15%的词，去预测覆盖住的词</li>
-</ul>
-</li>
-<li>Approach 2： NEXT SENTENCE PREDICTION<ul>
-<li>做句子之间的判断，判断两个句子是否存在上下文关系</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg-blog.csdnimg.cn%2F20210223193921145.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjgzODA2MQ%3D%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;refer=http%3A%2F%2Fimg-blog.csdnimg.cn&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1642055881&amp;t=6df93deba3f9b048d2cdd6789939d97e" alt="img"></p>
-<h2 id="三、How-to-use-BERT-aka-Bert的应用"><a href="#三、How-to-use-BERT-aka-Bert的应用" class="headerlink" title="三、How to use BERT aka:Bert的应用"></a>三、How to use BERT aka:Bert的应用</h2><h3 id="CASE-1-决定一整个句子属于那个类别（句子的分类）"><a href="#CASE-1-决定一整个句子属于那个类别（句子的分类）" class="headerlink" title="CASE 1:  决定一整个句子属于那个类别（句子的分类）"></a>CASE 1:  决定一整个句子属于那个类别（句子的分类）</h3><p><img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.oDJW0d8K-EIKnlBZ1S13TwHaFn?pid=ImgDet&rs=1" aligin="center"></p>
-<blockquote>
-<p><strong>[CLS]</strong>：代表分类的特殊符号，放在开头是因为Bert是基于Transformer的，而Transformer基于self-attention，即<strong>每个位置都会得到整个位置的句子信息</strong>，所以不需要放在最后</p>
-</blockquote>
-<h3 id="Case-2-决定一个句子中每个单词所属的类别"><a href="#Case-2-决定一个句子中每个单词所属的类别" class="headerlink" title="Case 2: 决定一个句子中每个单词所属的类别"></a>Case 2: 决定一个句子中每个单词所属的类别</h3><p><img src="https://tse1-mm.cn.bing.net/th/id/OIP-C.zzrwVkfLyNFk2tc1hroTLwHaFU?pid=ImgDet&rs=1"></p>
-<blockquote>
-<p>如：决定一个句子中w1是位置词还是时间词还是其它词</p>
-</blockquote>
-<h3 id="CASE-3-根据Sentence1（前提）决定Sentence2（假设）是对还是错"><a href="#CASE-3-根据Sentence1（前提）决定Sentence2（假设）是对还是错" class="headerlink" title="CASE 3: 根据Sentence1（前提）决定Sentence2（假设）是对还是错"></a>CASE 3: 根据Sentence1（前提）决定Sentence2（假设）是对还是错</h3><p><img src="https://img-blog.csdnimg.cn/20210306173935877.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hlcm9zdW5seQ==,size_16,color_FFFFFF,t_70" width="500px"></p>
-<h3 id="CASE-4-QA"><a href="#CASE-4-QA" class="headerlink" title="CASE 4: QA"></a>CASE 4: QA</h3><p><img src="https://tse1-mm.cn.bing.net/th/id/OIP-C.54m5zFtXFwz6b6PXf_s6CAHaFR?pid=ImgDet&rs=1" aligin="center"></p>
-<p>Input：文章+问题   ===&gt;  Output：答案在文章中起始位置 $A = \{d_s, \cdots, d_e\}$ </p>
-<p>​          <img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.8uzrcyIwoOhxi0z68ozRxAHaFg?pid=ImgDet&rs=1" width="500"></p>
-<p><img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.ej_jhIuiHIo2Vt8bGZ-FGQHaFK?pid=ImgDet&rs=1" width="500"></p>
-<h2 id="四、扩展-ERNIE"><a href="#四、扩展-ERNIE" class="headerlink" title="四、扩展-ERNIE"></a>四、扩展-ERNIE</h2><p><img src="https://tse1-mm.cn.bing.net/th/id/OIP-C.y30CYJ41Pba7iwXAzXBV7AHaFh?pid=ImgDet&rs=1"></p>
-<p>针对中文的MASK提出的想法：</p>
-<ul>
-<li>BERT中做MASK时，MASK的是中文中的一个字，通过上下文很容易predict出被MASK的词是什么。而且不符合中文的实际，中文语义是以<strong><em>词</em></strong> 为单位，而英文语义是一个字或者word为单位。</li>
-<li>ERNIE则是专为中文设计的MASK方法，每次以中文的“词”为单位进行MASK和分类预测，而不再以单个的字为单位进行分类预测。</li>
-</ul>
-<p>目前的变种实现有：</p>
-<ul>
-<li>华为：ZEN</li>
-<li>清华：ERNIE-T</li>
-</ul>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ol>
-<li>《李宏毅Bert学习笔记 》<a target="_blank" rel="noopener" href="https://blog.csdn.net/herosunly/article/details/94720139">https://blog.csdn.net/herosunly/article/details/94720139</a>  </li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://binprog.github.io/2021/12/15/Docker%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%AF%87/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Binj">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Binj的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/15/Docker%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%AF%87/" class="post-title-link" itemprop="url">Docker笔记之基础篇</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-15 20:44:43" itemprop="dateCreated datePublished" datetime="2021-12-15T20:44:43+08:00">2021-12-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-19 15:59:20" itemprop="dateModified" datetime="2021-12-19T15:59:20+08:00">2021-12-19</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.orphadata.org%2Fcgi-bin%2Fimg%2Fbody%2Fontologies%2Fdocker.png&refer=http%3A%2F%2Fwww.orphadata.org&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641898195&t=63f4be05817a4cd9795000d4bb060979" style="zoom:100%">
-<h1 id="docker基础"><a class="markdownIt-Anchor" href="#docker基础"></a> Docker基础</h1>
-<h2 id="一-基本组成"><a class="markdownIt-Anchor" href="#一-基本组成"></a> 一、基本组成</h2>
-<img src="https://s4.ax1x.com/2021/12/15/Tp0WPU.png">
-<p>**镜像：**可以通过镜像来创建容器， app镜像===&gt;run===&gt;app容器（提供服务），一个镜像可以启动多个容器（分布式集群的搭建）</p>
-<p>**容器：**Docker通过容器技术，独立运行一个或者一组应用。一个容器相当于一个简易的linux系统</p>
-<p>**仓库：**存放镜像的地方，分为公有仓库和私有仓库</p>
-<p>配置阿里云官方镜像加速器：</p>
-<ol>
-<li>
-<p><code>sudo mkdir -p /etc/docker</code></p>
-</li>
-<li>
-<p><code>sudo tee /etc/docker/daemon.json &lt;&lt;-'EOF'</code></p>
-<p><code>&#123;</code></p>
-<p><code>&quot;registry-mirrors&quot;: [&quot;http://hd1esep4.mirror.aliyuncs.com&quot;]</code></p>
-<p><code>&#125;</code></p>
-<p><code>EOF</code></p>
-</li>
-<li>
-<p><code>sudo systemctl daemon-reload</code></p>
-</li>
-<li>
-<p><code>sudo systemctl restart docker</code></p>
-</li>
-</ol>
-<h2 id="二-docker的镜像run的流程图"><a class="markdownIt-Anchor" href="#二-docker的镜像run的流程图"></a> 二、docker的镜像run的流程图</h2>
-<img src="https://s4.ax1x.com/2021/12/15/TpBERg.png">
-<h2 id="三-docker底层原理"><a class="markdownIt-Anchor" href="#三-docker底层原理"></a> 三、Docker底层原理</h2>
-<p>Docker是一个CS结构的系统，Docker的守护进程运行在主机上，通过Socket从客户端访问。DockerServer接收到DockerClient的指令就会执行这个指令</p>
-<img src="https://s4.ax1x.com/2021/12/15/TpBAJS.png">
-<h2 id="四-docker常用命令"><a class="markdownIt-Anchor" href="#四-docker常用命令"></a> 四、Docker常用命令</h2>
-<h3 id="链接"><a class="markdownIt-Anchor" href="#链接"></a> 链接</h3>
-<p><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline">https://docs.docker.com/engine/reference/commandline</a></p>
-<hr />
-<h3 id="镜像命令"><a class="markdownIt-Anchor" href="#镜像命令"></a> 镜像命令</h3>
-<hr />
-<p><strong>docker images</strong>：查看本地主机上的镜像</p>
-<p><strong>docker search</strong>：搜索命令</p>
-<p><strong>docker pull</strong>：下载镜像</p>
-<p><strong>docker rmi</strong>： 删除镜像</p>
-<hr />
-<h3 id="容器命令"><a class="markdownIt-Anchor" href="#容器命令"></a> 容器命令</h3>
-<hr />
-<p><strong>docker run [可选参数] image</strong> ：新建容器并启动</p>
-<blockquote>
-<p>参数说明</p>
-<p>​	--name=“Name” 容器名字 xx01  xx02 用来区分容器</p>
-<p>​	--d			     后台方式运行</p>
-<p>​	--it			      使用交互方式运行，进入容器查看内容</p>
-<p>​	-p                          指定容器的端口   -p 8080：8080</p>
-<ul>
-<li>-p ip：主机端口：容器端口</li>
-<li>-p 主机端口：容器端口**（常用）**</li>
-<li>-p 容器端口</li>
-</ul>
-</blockquote>
-<p><strong>docker ps</strong>：查看运行中的容器</p>
-<blockquote>
-<p>-a 查看所有容器（正在运行和历史运行）</p>
-<p>-n=x 显示最近创建的 x个容器</p>
-<p>-q 只显示容器的编号</p>
-</blockquote>
-<p><strong>exit</strong>：停止并退出正在运行的容器</p>
-<p><strong>Ctrl+P+Q</strong>：不停止但退出正在运行的容器</p>
-<p><strong>docker rm 容器id</strong>：删除容器，正在运行的容器必须强制删除-f</p>
-<p><strong>docker start 容器id</strong>：启动容器</p>
-<p><strong>docker restart 容器id</strong>：重启容器</p>
-<p><strong>docker stop 容器id</strong>: 停止当前正在运行的容器</p>
-<p><strong>docker kill 容器id</strong>：强制停止当前容器</p>
-<p><strong>docker top 容器id</strong>：查看容器内部的进程信息</p>
-<p><strong>docker exec -it 容器id /bin/bash</strong>：进入容器后开启一个新的终端，可以在里面操作</p>
-<p><strong>docker attach 容器id</strong>：进入容器正在执行的终端，不回启动新的进程！</p>
-<p><strong>docker cp 1e3d0b0653e8:/home/test.java C:/Users/BINJ/Desktop</strong>：从容器内复制文件到本地主机</p>
-<blockquote>
-<p>拷贝（cp）是一个手动过程，使用 -v 卷的技术，可以实现自动同步， /home /home</p>
-</blockquote>
-<h2 id="五-docker镜像基本原理"><a class="markdownIt-Anchor" href="#五-docker镜像基本原理"></a> 五、Docker镜像基本原理</h2>
-<h2 id="docker镜像详解"><a class="markdownIt-Anchor" href="#docker镜像详解"></a> Docker镜像详解</h2>
-<h2 id="镜像概述"><a class="markdownIt-Anchor" href="#镜像概述"></a> 镜像概述</h2>
-<ol>
-<li>镜像是一种轻量级、可执行的独立软件包，用来打包软件运行环境和基于运行环境开发的软件，包含运行某个软件所需的所有内容，包括：代码、运行时、库、环境变量和配置文件</li>
-<li>所有应用，直接打包docker镜像，就可以直接跑起来</li>
-<li>获取方式：
-<ol>
-<li>从远程仓库下载</li>
-<li>别人拷贝给你</li>
-<li>自己制作一个镜像DockerFile</li>
-</ol>
-</li>
-</ol>
-<h2 id="docker镜像加载原理"><a class="markdownIt-Anchor" href="#docker镜像加载原理"></a> Docker镜像加载原理</h2>
-<h4 id="unionfs联合文件系统"><a class="markdownIt-Anchor" href="#unionfs联合文件系统"></a> UnionFS（联合文件系统）</h4>
-<blockquote>
-<p>UnionFS是一种分层、轻量级并且高性能的文件系统，支持对文件系统的修改作为一次提交来一层层叠加，同时可以将不同目录挂载到同一个虚拟文件系统下。</p>
-<p>UnionFS是Docker镜像的基础，镜像可以通过分层来进行继承，基于基础镜像（父镜像）可以制作各种具体的应用镜像</p>
-<p>特性：一次同时加载多个文件系统，但从外面看起来，只能看到一个文件系统，联合加载会把各层文件系统叠加起来，这样最终的文件系统会包含所有底层的文件和目录</p>
-</blockquote>
-<h4 id="加载原理"><a class="markdownIt-Anchor" href="#加载原理"></a> 加载原理</h4>
-<blockquote>
-<p>docker的镜像实际上就是由一层层的文件系统构成的，这种层级的文件系统就是UnionFS</p>
-<p><strong>bootfs</strong>(boot file system)主要包含bootloader和kernel，bootloader主要引导加载kernel，Linux刚启动时会加载bootfs文件系统。Docker镜像的最底层就是bootfs，当boot加载完后，整个内核就在内存中了，此时内存的使用权已经由bootfs转交给内核，此时系统也会卸载bootfs</p>
-<p><strong>rootfs</strong>，在bootfs之上，包含的就是典型Linux系统中的/dev,/proc,/bin,/etc等标准目录和文件。rootfs就是各种不同的操作系统的发行版本，如Ubuntu，Centos等</p>
-</blockquote>
-<h4 id="分层理解"><a class="markdownIt-Anchor" href="#分层理解"></a> 分层理解</h4>
-<p>所有Docker镜像都起始于一个基础镜像层，当进行修改或增加心的内容时，就会在当前镜像层之上，创建新的镜像层。</p>
-<img src="https://gitee.com/binProg/my-pic-cdn/raw/master/hexo_imgs/A%7B208OI1%7D7_1D)3N3FNN%5BCJ.png">
-<p>特点：</p>
-<blockquote>
-<p>Docker<strong>镜像</strong>默认都是<strong>只读</strong>的，<strong>当容器启动时</strong>，一个新的<strong>可读写层</strong>被加载到镜像的顶部！这个新的可读写层就是<strong>容器层</strong>，容器层之下的都叫镜像</p>
-<p>即，user的所有操作都是基于<strong>容器层</strong>的。原来的镜像层+user自己的容器层 = user发布的新镜像</p>
-</blockquote>
-<img src="https://gitee.com/binProg/my-pic-cdn/raw/master/hexo_imgs/3A8618A8021E1F09C26DF1ED8994F223.png">
-<h4 id="commit镜像"><a class="markdownIt-Anchor" href="#commit镜像"></a> Commit镜像</h4>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker commit 提交容器成为一个新的副本</span><br><span class="line">docker commit -m=&quot;提交的描述信息&quot; -a=&quot;作者&quot; 容器id 目标镜像名:[TAG] </span><br></pre></td></tr></table></figure>
-<img src="https://gitee.com/binProg/my-pic-cdn/raw/master/hexo_imgs/2%7BID%7DBTJA(MR8Y25ALI2L_3.png">
-<h2 id="六-小结"><a class="markdownIt-Anchor" href="#六-小结"></a> 六、小结</h2>
-<img src="https://s4.ax1x.com/2021/12/15/TpBnLn.png">
-<h2 id="六-练习"><a class="markdownIt-Anchor" href="#六-练习"></a> 六、练习</h2>
-<h3 id="部署一个nginx"><a class="markdownIt-Anchor" href="#部署一个nginx"></a> 部署一个nginx</h3>
-<blockquote>
-<ul>
-<li>
-<p>docker search nginx</p>
-</li>
-<li>
-<p>docker pull nginx</p>
-</li>
-<li>
-<p>docker run -d --name nginx01 -p 3344:80 nginx</p>
-</li>
-<li>
-<p>测试：</p>
-<blockquote>
-<p>curl localhost:3344 //向localhost:3344发出GET请求</p>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-<h3 id="重要端口暴露"><a class="markdownIt-Anchor" href="#重要端口暴露"></a> 重要：端口暴露</h3>
-<img src="https://s4.ax1x.com/2021/12/15/TpBki8.jpg">
-<h3 id="思考"><a class="markdownIt-Anchor" href="#思考"></a> 思考</h3>
-<p>我们每次改动nginx配置文件，都需要进入容器内部？十分麻烦，要是可以在容器外部提供一个映射路径，达到在容器外修改文件名，容器内部就可以自动修改？ -v <strong>容器卷</strong>技术</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
@@ -899,6 +413,7 @@ relu(x) = max(0, x)</script><p><img src="https://img0.baidu.com/it/u=3033173174,
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Numpy%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">Numpy学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%94%9F%E6%88%90Numpy%E6%95%B0%E7%BB%84"><span class="nav-number">1.1.</span> <span class="nav-text">1. 生成Numpy数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E4%BB%8E%E5%B7%B2%E6%9C%89%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 从已有数据中创建数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E5%88%A9%E7%94%A8random%E6%A8%A1%E5%9D%97%E7%94%9F%E6%88%90%E6%95%B0%E6%8D%AE"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 利用random模块生成数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E5%88%9B%E5%BB%BA%E7%89%B9%E5%AE%9A%E5%BD%A2%E7%8A%B6%E7%9A%84%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 创建特定形状的一维数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-%E5%88%A9%E7%94%A8arange-linspace%E5%87%BD%E6%95%B0%E7%94%9F%E6%88%90%E6%95%B0%E7%BB%84"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 利用arange&#x2F;linspace函数生成数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%8E%B7%E5%8F%96%E5%85%83%E7%B4%A0"><span class="nav-number">1.2.</span> <span class="nav-text">2. 获取元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Numpy%E7%9A%84%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97"><span class="nav-number">1.3.</span> <span class="nav-text">3.Numpy的算术运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E5%AF%B9%E5%BA%94%E5%85%83%E7%B4%A0%E7%9B%B8%E4%B9%98%EF%BC%88Element-Wise-Product"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 对应元素相乘（Element-Wise Product)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E7%82%B9%E7%A7%AF%E8%BF%90%E7%AE%97"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 点积运算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%95%B0%E7%BB%84%E5%8F%98%E5%BD%A2"><span class="nav-number">1.4.</span> <span class="nav-text">4. 数组变形</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E6%9B%B4%E6%94%B9%E6%95%B0%E7%BB%84%E5%BD%A2%E7%8A%B6"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 更改数组形状</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#reshape"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">reshape</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#resize"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">resize</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E8%BD%AC%E7%BD%AE%EF%BC%88T%EF%BC%89"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">向量转置（T）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ravel%E5%90%91%E9%87%8F%E5%B1%95%E5%B9%B3"><span class="nav-number">1.4.1.4.</span> <span class="nav-text">ravel向量展平</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#flatten"><span class="nav-number">1.4.1.5.</span> <span class="nav-text">flatten</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#squeeze"><span class="nav-number">1.4.1.6.</span> <span class="nav-text">squeeze</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#transpose"><span class="nav-number">1.4.1.7.</span> <span class="nav-text">transpose</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E5%90%88%E5%B9%B6%E6%95%B0%E7%BB%84"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 合并数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#append"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">append</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#concatenate"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">concatenate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#stack"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">stack</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86"><span class="nav-number">1.4.3.</span> <span class="nav-text">5. 批量处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E9%80%9A%E7%94%A8%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.4.</span> <span class="nav-text">6. 通用函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Math%E4%B8%8ENumpy%E5%87%BD%E6%95%B0%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">1.4.4.1.</span> <span class="nav-text">Math与Numpy函数的对比</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E5%92%8C%E5%90%91%E9%87%8F%E8%BF%90%E7%AE%97%E6%AF%94%E8%BE%83"><span class="nav-number">1.4.4.2.</span> <span class="nav-text">循环和向量运算比较</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6"><span class="nav-number">1.4.5.</span> <span class="nav-text">7. 广播机制</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
