@@ -8,7 +8,7 @@ mathjax: true
 # BERT学习笔记(原理篇1)
 
 > 1. 机器学习最早使用**1-of-N encoding**，把每个词汇表示成一个N维的向量，N维向量中只有1个1，其余全是0。造成维度爆炸，且各个词汇之间的上下文关系和语义关系都没有考虑进去。
-> 2. 接着，有了**Word Class**的概念，比如 dog/bird/fish是一类，因为都是动物。但是之关注了类间单词的区别而忽略了类内单词的区别
+> 2. 接着，有了**Word Class**的概念，比如 dog/bird/fish是一类，因为都是动物。但是只关注了类间单词的区别而忽略了类内单词的区别
 > 3. 进阶的，有了**Word Embedding**的概念，用dense vector（向量）来表示一个词，意思相近的词其向量之间的距离较近。常见的Word Embedding方法有word2vec, GloVe等
 
 <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg-blog.csdnimg.cn%2F2021031620201211.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDE3NzU5NA%3D%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&refer=http%3A%2F%2Fimg-blog.csdnimg.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642056957&t=8dcbc4be84686bc9ccd1e1ba051e10a0" width="500px" height="350px" />

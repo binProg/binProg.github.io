@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"binprog.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="常用激活函数概要激活函数作用：  考虑到真实世界，大多数系统是非线性的，如果要模拟复杂系统则必须借助非线性的激活函数！  通用近似理论(Universal Approximation Theorem):   神经网络中至少需要一层隐藏层和足够的神经元，利用非线性的激活函数，便可以模拟任何复杂的非线性函数。  1. Sigmoid函数公式： sigmoid(x) &#x3D; \frac{1}{1+e^{-x">
+  <meta name="description" content="常用激活函数概要 激活函数作用：  考虑到真实世界，大多数系统是非线性的，如果要模拟复杂系统则必须借助非线性的激活函数！  通用近似理论(Universal Approximation Theorem):  神经网络中至少需要一层隐藏层和足够的神经元，利用非线性的激活函数，便可以模拟任何复杂的非线性函数。   1. Sigmoid函数 公式： sigmoid(x)&#x3D;11+e−xsigmoid(x">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常用激活函数概要">
 <meta property="og:url" content="https://binprog.github.io/2021/12/15/%E5%B8%B8%E7%94%A8%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E6%A6%82%E8%A6%81/index.html">
 <meta property="og:site_name" content="Binj的博客">
-<meta property="og:description" content="常用激活函数概要激活函数作用：  考虑到真实世界，大多数系统是非线性的，如果要模拟复杂系统则必须借助非线性的激活函数！  通用近似理论(Universal Approximation Theorem):   神经网络中至少需要一层隐藏层和足够的神经元，利用非线性的激活函数，便可以模拟任何复杂的非线性函数。  1. Sigmoid函数公式： sigmoid(x) &#x3D; \frac{1}{1+e^{-x">
+<meta property="og:description" content="常用激活函数概要 激活函数作用：  考虑到真实世界，大多数系统是非线性的，如果要模拟复杂系统则必须借助非线性的激活函数！  通用近似理论(Universal Approximation Theorem):  神经网络中至少需要一层隐藏层和足够的神经元，利用非线性的激活函数，便可以模拟任何复杂的非线性函数。   1. Sigmoid函数 公式： sigmoid(x)&#x3D;11+e−xsigmoid(x">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fs5.51cto.com%2Fwyfs02%2FM01%2F85%2F51%2FwKiom1egBxOBiT26AABfVHYjxlU640.jpg&refer=http%3A%2F%2Fs5.51cto.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642147041&t=2380c142f902867afbde4a2b9d36a1df">
 <meta property="og:image" content="https://s4.ax1x.com/2021/12/15/TSG6eg.png">
@@ -200,51 +200,62 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="常用激活函数概要"><a href="#常用激活函数概要" class="headerlink" title="常用激活函数概要"></a>常用激活函数概要</h1><p><strong>激活函数作用：</strong></p>
+        <h1 id="常用激活函数概要"><a class="markdownIt-Anchor" href="#常用激活函数概要"></a> 常用激活函数概要</h1>
+<p><strong>激活函数作用：</strong></p>
 <blockquote>
 <p>考虑到真实世界，大多数系统是<strong>非线性</strong>的，如果要模拟复杂系统则必须借助非线性的激活函数！</p>
 </blockquote>
-<p><strong>通用近似理论(Universal Approximation Theorem):</strong> </p>
+<p><strong>通用近似理论(Universal Approximation Theorem):</strong></p>
 <blockquote>
 <p>神经网络中至少需要一层隐藏层和足够的神经元，利用非线性的激活函数，便可以模拟任何复杂的非线性函数。</p>
 </blockquote>
-<h2 id="1-Sigmoid函数"><a href="#1-Sigmoid函数" class="headerlink" title="1. Sigmoid函数"></a>1. Sigmoid函数</h2><p>公式：</p>
-<script type="math/tex; mode=display">sigmoid(x) = \frac{1}{1+e^{-x}}</script><p><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fs5.51cto.com%2Fwyfs02%2FM01%2F85%2F51%2FwKiom1egBxOBiT26AABfVHYjxlU640.jpg&refer=http%3A%2F%2Fs5.51cto.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642147041&t=2380c142f902867afbde4a2b9d36a1df" height="300px"></p>
+<h2 id="1-sigmoid函数"><a class="markdownIt-Anchor" href="#1-sigmoid函数"></a> 1. Sigmoid函数</h2>
+<p>公式：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mi>i</mi><mi>g</mi><mi>m</mi><mi>o</mi><mi>i</mi><mi>d</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mn>1</mn><mrow><mn>1</mn><mo>+</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>x</mi></mrow></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">sigmoid(x) = \frac{1}{1+e^{-x}} 
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">i</span><span class="mord mathdefault">d</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.09077em;vertical-align:-0.7693300000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.697331em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathdefault mtight">x</span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fs5.51cto.com%2Fwyfs02%2FM01%2F85%2F51%2FwKiom1egBxOBiT26AABfVHYjxlU640.jpg&refer=http%3A%2F%2Fs5.51cto.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642147041&t=2380c142f902867afbde4a2b9d36a1df" height="300px">
 <p>特点：</p>
 <ul>
-<li>Sigmoid的取值范围在$(0,1)$之间</li>
-<li>Sigmoid函数的导值在$(0,0.25)$的连续区间</li>
+<li>Sigmoid的取值范围在<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(0,1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span>之间</li>
+<li>Sigmoid函数的导值在<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>0.25</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(0,0.25)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">2</span><span class="mord">5</span><span class="mclose">)</span></span></span></span>的连续区间</li>
 </ul>
 <p>缺点：</p>
 <ol>
-<li><p>在神经网络模型，Sigmoid函数存在<strong>“梯度消失”问题</strong>：</p>
+<li>
+<p>在神经网络模型，Sigmoid函数存在**&quot;梯度消失&quot;问题**：</p>
 <p>在逆向参数调整（Back Propagation）过程中，使用链式法则（Chain Rule）可以推导出如下图所示的公式：</p>
-<p><img src="https://s4.ax1x.com/2021/12/15/TSG6eg.png" height="150px"></p>
-<p>基于上图公式，对深度神经网络的权重调整幅度进行计算，上图中间部分是多个Sigmoid导数的乘积，多个0.25相乘后$(0.25<em>0.25</em>0.25<em>\cdots</em>0.25)​$，权重逐渐趋于0，即导致”梯度消失“。</p>
+<img src="https://s4.ax1x.com/2021/12/15/TSG6eg.png" height="150px">
+<p>基于上图公式，对深度神经网络的权重调整幅度进行计算，上图中间部分是多个Sigmoid导数的乘积，多个0.25相乘后<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mn>0.25</mn><mo>∗</mo><mn>0.25</mn><mo>∗</mo><mn>0.25</mn><mo>∗</mo><mo>⋯</mo><mo>∗</mo><mn>0.25</mn><mo stretchy="false">)</mo><mi mathvariant="normal">​</mi></mrow><annotation encoding="application/x-tex">(0.25*0.25*0.25*\cdots*0.25)​</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mord">.</span><span class="mord">2</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">2</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">2</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.46528em;vertical-align:0em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">2</span><span class="mord">5</span><span class="mclose">)</span><span class="mord">​</span></span></span></span>，权重逐渐趋于0，即导致”梯度消失“。</p>
 </li>
-<li><p>Sigmoid函数在进行指数计算时会消耗较多的计算资源 </p>
+<li>
+<p>Sigmoid函数在进行指数计算时会消耗较多的计算资源</p>
 </li>
 </ol>
-<h2 id="2-tanh函数"><a href="#2-tanh函数" class="headerlink" title="2. tanh函数"></a>2. tanh函数</h2><p>公式：</p>
-<script type="math/tex; mode=display">
-tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}</script><p><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.soolco.com%2Fgroup1%2FM00%2F0E%2FEF%2FrBAADF-8cmqAP7ZBAACAfZwqipg022.png&refer=http%3A%2F%2Fwww.soolco.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642147920&t=e8fbccac442127ec2dfd2125e1950d3e" height="400px"></p>
+<h2 id="2-tanh函数"><a class="markdownIt-Anchor" href="#2-tanh函数"></a> 2. tanh函数</h2>
+<p>公式：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mi>a</mi><mi>n</mi><mi>h</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><msup><mi>e</mi><mi>x</mi></msup><mo>−</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>x</mi></mrow></msup></mrow><mrow><msup><mi>e</mi><mi>x</mi></msup><mo>+</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>x</mi></mrow></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">t</span><span class="mord mathdefault">a</span><span class="mord mathdefault">n</span><span class="mord mathdefault">h</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.217661em;vertical-align:-0.7693300000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.448331em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.590392em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.697331em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathdefault mtight">x</span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.771331em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathdefault mtight">x</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.soolco.com%2Fgroup1%2FM00%2F0E%2FEF%2FrBAADF-8cmqAP7ZBAACAfZwqipg022.png&refer=http%3A%2F%2Fwww.soolco.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642147920&t=e8fbccac442127ec2dfd2125e1950d3e" height="400px">
 <p>特点：</p>
 <ul>
-<li>tanh函数的值位于$(-1, 1)$区间</li>
-<li>tanh函数的导数值位于$(0, 1)$区间，<ul>
+<li>tanh函数的值位于<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(-1, 1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span>区间</li>
+<li>tanh函数的导数值位于<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(0, 1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span>区间，
+<ul>
 <li>因为tanh的导数值范围大于sigmoid，所以tanh显著缓解了梯度消失问题，但不能消除！</li>
 </ul>
 </li>
 </ul>
-<h2 id="3-ReLU函数"><a href="#3-ReLU函数" class="headerlink" title="3. ReLU函数"></a>3. ReLU函数</h2><p>公式：</p>
-<script type="math/tex; mode=display">
-relu(x) = max(0, x)</script><p><img src="https://img0.baidu.com/it/u=3033173174,2106807370&fm=26&fmt=auto" height="300px"></p>
+<h2 id="3-relu函数"><a class="markdownIt-Anchor" href="#3-relu函数"></a> 3. ReLU函数</h2>
+<p>公式：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mi>e</mi><mi>l</mi><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>m</mi><mi>a</mi><mi>x</mi><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">relu(x) = max(0, x)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">u</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span></span></p>
+<img src="https://img0.baidu.com/it/u=3033173174,2106807370&fm=26&fmt=auto" height="300px">
 <p><strong>隐藏层的默认推荐函数：ReLU</strong></p>
 <p>特点：</p>
 <ul>
-<li>ReLU在$x&gt;0$时显示的线性特征，能够很好地解决梯度消失问题</li>
+<li>ReLU在<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x&gt;0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>时显示的线性特征，能够很好地解决梯度消失问题</li>
 <li>根据通用相似定理，ReLU函数整体的非线性又能够在神经网络中拟合任何复杂的连续函数</li>
-<li>当$x &lt; 0$时，其函数值和导数值均为0，在逆向梯度调整时，不产生参数值的改变</li>
+<li>当<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x &lt; 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>时，其函数值和导数值均为0，在逆向梯度调整时，不产生参数值的改变</li>
 </ul>
 
     </div>
@@ -268,8 +279,8 @@ relu(x) = max(0, x)</script><p><img src="https://img0.baidu.com/it/u=3033173174,
       <i class="fa fa-chevron-left"></i> BERT学习笔记--李宏毅
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/12/16/Numpy%E5%9F%BA%E7%A1%80/" rel="next" title="Numpy基础">
-      Numpy基础 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/12/20/Docker%E8%BF%9B%E9%98%B6/" rel="next" title="Docker进阶">
+      Docker进阶 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -329,7 +340,7 @@ relu(x) = max(0, x)</script><p><img src="https://img0.baidu.com/it/u=3033173174,
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E6%A6%82%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">常用激活函数概要</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Sigmoid%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">1. Sigmoid函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-tanh%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">2. tanh函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-ReLU%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text">3. ReLU函数</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E6%A6%82%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text"> 常用激活函数概要</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-sigmoid%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text"> 1. Sigmoid函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-tanh%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text"> 2. tanh函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-relu%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text"> 3. ReLU函数</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -343,12 +354,12 @@ relu(x) = max(0, x)</script><p><img src="https://img0.baidu.com/it/u=3033173174,
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>

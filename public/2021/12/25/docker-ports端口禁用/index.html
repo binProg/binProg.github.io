@@ -20,15 +20,22 @@
     var CONFIG = {"hostname":"binprog.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Binj的博客">
-<meta property="og:url" content="https://binprog.github.io/tags/nlp-Bert/index.html">
+  <meta name="description" content="Docker 暴露的端口被禁用  报错： 在使用Docker部署Mosquitto服务器时，报错如下： docker: Error response from daemon: Ports are not available: listen tcp 0.0.0.0:10001: bind: An attempt was made to access a socket in a way forbid">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker ports端口禁用">
+<meta property="og:url" content="https://binprog.github.io/2021/12/25/docker-ports%E7%AB%AF%E5%8F%A3%E7%A6%81%E7%94%A8/index.html">
 <meta property="og:site_name" content="Binj的博客">
+<meta property="og:description" content="Docker 暴露的端口被禁用  报错： 在使用Docker部署Mosquitto服务器时，报错如下： docker: Error response from daemon: Ports are not available: listen tcp 0.0.0.0:10001: bind: An attempt was made to access a socket in a way forbid">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/binProg/my-pic-cdn/raw/master/hexo_imgs/FC6%5DBBQ~M72JH3(Q$KU%5D$F5.png">
+<meta property="article:published_time" content="2021-12-25T05:58:10.000Z">
+<meta property="article:modified_time" content="2021-12-25T06:05:03.357Z">
 <meta property="article:author" content="Binj">
+<meta property="article:tag" content="docker 工具问题集">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/binProg/my-pic-cdn/raw/master/hexo_imgs/FC6%5DBBQ~M72JH3(Q$KU%5D$F5.png">
 
-<link rel="canonical" href="https://binprog.github.io/tags/nlp-Bert/">
+<link rel="canonical" href="https://binprog.github.io/2021/12/25/docker-ports%E7%AB%AF%E5%8F%A3%E7%A6%81%E7%94%A8/">
 
 
 <script id="page-configurations">
@@ -36,12 +43,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>标签: nlp Bert | Binj的博客</title>
+  <title>docker ports端口禁用 | Binj的博客</title>
   
 
 
@@ -139,51 +146,94 @@
         <div class="content-wrap">
           
 
-          <div class="content tag">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">nlp Bert
-          <small>标签</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://binprog.github.io/2021/12/25/docker-ports%E7%AB%AF%E5%8F%A3%E7%A6%81%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Binj">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Binj的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          docker ports端口禁用
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-12-25 13:58:10 / 修改时间：14:05:03" itemprop="dateCreated datePublished" datetime="2021-12-25T13:58:10+08:00">2021-12-25</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
+        <h1 id="docker-暴露的端口被禁用"><a class="markdownIt-Anchor" href="#docker-暴露的端口被禁用"></a> Docker 暴露的端口被禁用</h1>
+<h2 id="报错"><a class="markdownIt-Anchor" href="#报错"></a> 报错：</h2>
+<p>在使用Docker部署Mosquitto服务器时，报错如下：</p>
+<p><code>docker: Error response from daemon: Ports are not available: listen tcp 0.0.0.0:10001: bind: An attempt was made to access a socket in a way forbidden by its access permissions.</code></p>
+<p>即，10001端口不让用</p>
+<h2 id="解决"><a class="markdownIt-Anchor" href="#解决"></a> 解决：</h2>
+<p>使用如下命令查看哪些端口不让用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh interface ipv4 show excludedportrange protocol=tcp</span><br></pre></td></tr></table></figure>
+<img src="https://gitee.com/binProg/my-pic-cdn/raw/master/hexo_imgs/FC6%5DBBQ~M72JH3(Q$KU%5D$F5.png">
+<p>换个不在上述列表中的端口即可</p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jasongrass/p/13726009.html">https://www.cnblogs.com/jasongrass/p/13726009.html</a></p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-12-15T20:46:32+08:00"
-              content="2021-12-15">
-          12-15
-        </time>
-      </div>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/docker-%E5%B7%A5%E5%85%B7%E9%97%AE%E9%A2%98%E9%9B%86/" rel="tag"># docker 工具问题集</a>
+          </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/12/15/BERT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%9D%8E%E5%AE%8F%E6%AF%85/" itemprop="url">
-            <span itemprop="name">BERT学习笔记--李宏毅</span>
-          </a>
-      </div>
+        
 
-    </header>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/20/Docker%E8%BF%9B%E9%98%B6/" rel="prev" title="Docker进阶">
+      <i class="fa fa-chevron-left"></i> Docker进阶
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/12/26/paper/" rel="next" title="paper">
+      paper <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
   </article>
-
-    </div>
-  </div>
   
   
-  
-
   
 
 
@@ -236,6 +286,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#docker-%E6%9A%B4%E9%9C%B2%E7%9A%84%E7%AB%AF%E5%8F%A3%E8%A2%AB%E7%A6%81%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text"> Docker 暴露的端口被禁用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%A5%E9%94%99"><span class="nav-number">1.1.</span> <span class="nav-text"> 报错：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3"><span class="nav-number">1.2.</span> <span class="nav-text"> 解决：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">1.3.</span> <span class="nav-text"> 参考</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

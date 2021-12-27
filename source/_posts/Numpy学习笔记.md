@@ -1,9 +1,11 @@
 ---
-title: Numpy基础
-date: 2021-12-16 16:34:42
-tags: Numpy nlp
+title: Numpy学习笔记
+date: 2021-12-27 10:06:58
+tags: Numpy
 mathjax: true
 ---
+
+
 
 # Numpy学习笔记
 
@@ -48,7 +50,6 @@ print(type(nd2))
 > 在深度学习中，我们经常需要对一些参数进行初始化，因此为了更有效地训练模型，提高模型的性能，有些初始化还需要满足一定的条件，比如满足正态分布或者均匀分布等
 
 - np.random.random: 生成0到1之间的随机数
-
 - np.random.uniform: 生成均匀分布的随机数
 - np.random.randn: 生成标准正太的随机数
 - np.random.randint: 生成随机的整数
@@ -68,14 +69,9 @@ print(nd3)
  [0.22436833 0.03590968 0.86430496]]
 ```
 
-
-
 ```python
 print("nd3的形状为：",nd3.shape)
-```
-
-```
-nd3的形状为： (3, 3)
+>>> nd3的形状为： (3, 3)
 ```
 
 为了每次生成同一份数据，可以指定一个随机种子，使用shuffle函数打乱生成的随机数
@@ -323,6 +319,7 @@ print("\n>>> 随机但按制度概率抽取：\n",c3)
  [ 9.  9. 17. 19.]
  [23. 13. 12. 17.]]
 
+
 ```
 
 ## 3.Numpy的算术运算
@@ -364,6 +361,7 @@ print(A/2.0)
 [[ 0.5  1. ]
  [-0.5  2. ]]
 
+
 ```
 
 **因此，推而广之，数组通过一些 激活函数 后，输出与输入形状一致**
@@ -390,6 +388,7 @@ print("激活函数softmax输出形状：",softmax(X).shape)
 激活函数relu输出形状： (2, 3)
 激活函数softmax输出形状： (2, 3)
 
+
 ```
 
 ### 3.2 点积运算
@@ -405,11 +404,10 @@ print(X3)
 [[21 24 27]
  [47 54 61]]
 
+
 ```
 
 ## 4. 数组变形
-
-![IMG_0361%2820211216-140409%29.PNG](attachment:IMG_0361%2820211216-140409%29.PNG)
 
 ### 4.1 更改数组形状
 
@@ -443,9 +441,8 @@ reshape：
 [[0 1 2 3 4]
  [5 6 7 8 9]]
 
+
 ```
-
-
 
 ```
 ---------------------------------------------------------------------------
@@ -456,10 +453,6 @@ ValueError                                Traceback (most recent call last)
       9 print(arr.reshape(5,-1))
      10 print(arr.reshape(-1,5))
 ---> 11 print(arr.reshape(3,6))
-
-```
-
-```
 ValueError: cannot reshape array of size 10 into shape (3,6)
 
 ```
@@ -547,6 +540,7 @@ print(a.flatten())
  [1. 7. 5. 5.]]
 [7. 4. 5. 1. 3. 2. 2. 5. 1. 7. 5. 5.]
 
+
 ```
 
 #### squeeze
@@ -586,11 +580,10 @@ print(arr2.transpose(1,2,0).shape)
 (2, 3, 4)
 (3, 4, 2)
 
+
 ```
 
 ### 4.2 合并数组
-
-![IMG_0362%2820211216-142751%29.PNG](attachment:IMG_0362%2820211216-142751%29.PNG)
 
 - append、concatenate、stack都有一个**axis**参数，用于控制数组的合并方式是**按行还是按列**
 - append和concatenate的数组必须有**相同的行数或者列数**
@@ -643,6 +636,7 @@ print("按列合并后数据的维度：",d.shape)
  [2 3 2 3]]
 按列合并后数据的维度： (2, 4)
 
+
 ```
 
 #### concatenate
@@ -666,6 +660,7 @@ print(d)
  [5 6]]
 [[1 2 5]
  [3 4 6]]
+
 
 ```
 
@@ -818,14 +813,13 @@ for i in range(0, len(data_train), batch_size):
 第9800批次，该批次的数据之和：-14.943652726871015
 第9900批次，该批次的数据之和：6.466367180724267
 
+
 ```
 
 ### 6. 通用函数
 
 Numpy提供两种基本的对象，即**ndarray和ufunc对象**<br>
 ufunc是一种能对数组中每个元素进行操作的函数<br>
-Numpy中的几个常见ufunc：
-![IMG_0363.PNG](attachment:IMG_0363.PNG)
 
 #### Math与Numpy函数的对比
 
@@ -848,6 +842,7 @@ print("numpy.sin:",time.clock()-start)
 ```
 math.sin: 0.5838227
 numpy.sin: 0.032238599999999895
+
 
 ```
 
@@ -882,6 +877,7 @@ for loop----- Computation time = 890.625ms
 dot = 249573.0001404432
 vector version----- Compution time = 31.25ms
 
+
 ```
 
 在深度学习算法中，一般都使用向量化矩阵进行运算
@@ -889,7 +885,6 @@ vector version----- Compution time = 31.25ms
 ### 7. 广播机制
 
 Numpy的ufunc中要求输入数组是一致的,当数组的**shape不相等**时，则会使用**广播机制**
-![IMG_0364.PNG](attachment:IMG_0364.PNG)
 
 ```python
 import numpy as np 
@@ -908,6 +903,7 @@ C矩阵的形状：(4, 3)
  [10 11 12]
  [20 21 22]
  [30 31 32]]
+
 
 ```
 
